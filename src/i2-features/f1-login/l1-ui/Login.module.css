@@ -1,0 +1,46 @@
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 80vh;
+}
+
+.logo {
+    height: 260px;
+    width: 260px;
+    margin-right: -155px;
+    z-index: 2;
+
+    border: #ffffff solid 30px;
+    border-radius: 300px;
+    background: #0093fe;
+}
+
+.default {
+    background: #0093fe;
+}
+.loading {
+    background: #fedc00;
+}
+.error {
+    background: #fe001e;
+}
+.ok {
+    background: #00fe04;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 900px;
+    height: 400px;
+    z-index: 1;
+
+    background: #0093fe;
+}
+
+.form .item {
+    margin: 20px;
+}

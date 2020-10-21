@@ -1,0 +1,46 @@
+.page {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 80vh;
+}
+
+.course {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 50px;
+}
+
+.img {
+    height: 300px;
+    width: 300px;
+
+    background: black;
+}
+
+.name {
+    margin-top: -25px;
+    width: 100px;
+    text-align: center;
+
+    background: #0093fe;
+    color: white;
+}
+
+.aboutBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 20vh;
+    width: 300px;
+    margin-top: 10px;
+
+    background: #0093fe;
+}
+
+.about {
+    width: 300px;
+}
