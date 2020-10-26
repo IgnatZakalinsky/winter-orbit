@@ -2,6 +2,7 @@ import React, {useState, ChangeEvent} from 'react'
 import {Redirect} from 'react-router-dom'
 import s from './Login.module.css'
 import {PATH} from '../../../i1-main/m1-ui/u2-main/Main'
+import axios from 'axios'
 
 type LoginPropsType = {
     setIsAuth: (isAuth: boolean) => void
@@ -61,6 +62,15 @@ const Login: React.FC<LoginPropsType> = ({setIsAuth}) => {
                         onClick={send}
                     >
                         авторизация
+                    </button>
+
+                    <button
+                        onClick={() => {
+                            axios.get('http://127.0.0.1:8000/users/')
+                                .then(res => console.log('users: ', res.data))
+                        }}
+                    >
+                        test request for users
                     </button>
                 </div>
             </div>
