@@ -1,40 +1,27 @@
-import React, {useState, ChangeEvent} from 'react'
-import {Redirect} from 'react-router-dom'
+import React, {ChangeEvent, useState} from 'react'
 import s from './Login.module.css'
-import {PATH} from '../../../i1-main/m1-ui/u2-main/Main'
-import axios from 'axios'
+import {StatusType} from "./LoginPage";
 
 type LoginPropsType = {
-    setIsAuth: (isAuth: boolean) => void
+    status: StatusType
+    setStatus: (status: StatusType) => void
+    send: (login: string, pass: string) => void
 }
 
-const Login: React.FC<LoginPropsType> = ({setIsAuth}) => {
-    const [status, setStatus] = useState<'default' | 'loading' | 'error' | 'ok'>('default')
-    const [login, setLogin] = useState<string>('test')
-    const [redirect, setRedirect] = useState<boolean>(false)
+const Login: React.FC<LoginPropsType> = ({status, setStatus, send}) => {
+    const [login, setLogin] = useState<string>('me@gmail.com')
+    const [pass, setPass] = useState<string>('y3jPqdFvNtB6Q96')
 
-    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeLogin = (e: ChangeEvent<HTMLInputElement>) => {
         setLogin(e.currentTarget.value)
         setStatus('default')
     }
-    const send = () => {
-        setStatus('loading')
-
-        setTimeout(() => {
-            if (login === 'test') {
-                setStatus('ok')
-                setIsAuth(true)
-
-                setTimeout(() => {
-                    setRedirect(true)
-                }, 1500)
-            } else {
-                setStatus('error')
-            }
-        }, 1500)
+    const onChangePass = (e: ChangeEvent<HTMLInputElement>) => {
+        setPass(e.currentTarget.value)
+        setStatus('default')
     }
 
-    if (redirect) return <Redirect to={PATH.ACCOUNT}/>
+    const sendCallback = () => send(login, pass)
 
     return (
         <div className={s.login}>
@@ -50,27 +37,22 @@ const Login: React.FC<LoginPropsType> = ({setIsAuth}) => {
                 <div className={s.item}>
                     <input
                         value={login}
-                        onChange={onChange}
+                        onChange={onChangeLogin}
                     />
                 </div>
                 <div className={s.item}>
-                    <input type='password'/>
+                    <input
+                        type='password'
+                        value={pass}
+                        onChange={onChangePass}
+                    />
                 </div>
 
                 <div className={s.item}>
                     <button
-                        onClick={send}
+                        onClick={sendCallback}
                     >
                         авторизация
-                    </button>
-
-                    <button
-                        onClick={() => {
-                            axios.get('http://127.0.0.1:8000/users/')
-                                .then(res => console.log('users: ', res.data))
-                        }}
-                    >
-                        test request for users
                     </button>
                 </div>
             </div>
