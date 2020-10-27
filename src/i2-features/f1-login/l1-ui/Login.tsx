@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useState} from 'react'
 import s from './Login.module.css'
-import {StatusType} from "./LoginPage";
+import {StatusType} from './LoginPage'
 
 type LoginPropsType = {
     status: StatusType

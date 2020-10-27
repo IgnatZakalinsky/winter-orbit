@@ -2,11 +2,18 @@ import React, {useState} from 'react'
 import s from './Account.module.css'
 import Profile from './profile/Profile'
 import Courses from './courses/Courses'
+import {ProfileType} from './AccountPage'
+import {UserType} from '../../f1-login/l1-ui/LoginPage'
 
-type AccountPropsType = {}
+type AccountPropsType = {
+    profile: ProfileType | undefined
+    user: UserType | null
+}
 
-const Account: React.FC<AccountPropsType> = ({}) => {
+const Account: React.FC<AccountPropsType> = ({profile, user}) => {
     const [item, setItem] = useState<'profile' | 'courses'>('profile')
+
+    const courseIds = profile ? profile.user_courses : []
 
     return (
         <div className={s.account}>
@@ -22,8 +29,8 @@ const Account: React.FC<AccountPropsType> = ({}) => {
 
             <div className={s.checkedBlock}>
                 {item === 'profile'
-                    ? <Profile/>
-                    : <Courses/>
+                    ? <Profile user={user} profile={profile}/>
+                    : <Courses courseIds={courseIds}/>
                 }
             </div>
         </div>

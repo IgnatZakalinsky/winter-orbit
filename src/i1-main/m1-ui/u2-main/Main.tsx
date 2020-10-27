@@ -3,11 +3,11 @@ import {Switch, Route, Redirect} from 'react-router-dom'
 import Header from '../u3-header/Header'
 import Footer from '../u4-footer/Footer'
 import s from './Main.module.css'
-import Account from '../../../i2-features/f2-account/a1-ui/Account'
 import CoursesPage from '../../../i2-features/f3-courses-page/c1-ui/CoursesPage'
 import Course from '../../../i2-features/f4-course/c1-ui/Course'
 import LoginRedirect from '../u4-login-redirect/LoginRedirect'
-import LoginPage, {UserType} from "../../../i2-features/f1-login/l1-ui/LoginPage";
+import LoginPage, {UserType} from '../../../i2-features/f1-login/l1-ui/LoginPage'
+import AccountPage from '../../../i2-features/f2-account/a1-ui/AccountPage'
 
 export const PATH = {
     HOME: '/',
@@ -33,7 +33,7 @@ const Main = () => {
                     <Route
                         path={PATH.ACCOUNT}
                         exact
-                        render={() => <LoginRedirect isAuth={isAuth}><Account/></LoginRedirect>}
+                        render={() => <LoginRedirect isAuth={isAuth}><AccountPage user={user}/></LoginRedirect>}
                     />
 
                     <Route

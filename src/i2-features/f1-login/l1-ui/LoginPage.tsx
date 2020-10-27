@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react'
 import {Redirect} from 'react-router-dom'
 import {PATH} from '../../../i1-main/m1-ui/u2-main/Main'
-import Login from "./Login";
-import axios from "axios";
+import Login from './Login'
+import axios from 'axios'
 
 export type StatusType = 'default' | 'loading' | 'error login/pass' | 'ok'
 export type GetUsersRequestType = {
@@ -52,7 +52,7 @@ const LoginPage: React.FC<LoginPagePropsType> = ({setIsAuth, setUser}) => {
 
                 setTimeout(() => {
                     setRedirect(true)
-                }, 1500)
+                }, 500)
             } else {
                 setStatus('error login/pass')
             }

@@ -1,29 +1,65 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import {PATH} from '../../../../i1-main/m1-ui/u2-main/Main'
+import axios from 'axios'
 
-const courses = [
-    {_id: 1, name: 'Python junior'},
-    {_id: 2, name: 'Python junior'},
-    {_id: 3, name: 'Python junior'},
-]
+// const coursesTest = [
+//     {id: 1, title: 'Python junior'},
+//     {id: 2, title: 'Python junior'},
+//     {id: 3, title: 'Python junior'},
+// ]
 
-type CoursesPropsType = {}
+export type GetCoursesRequestType = {
+    count: number
+    next: any // any
+    previous: any // any
+    results: CourseType[]
+}
+export type CourseType = {
+    id: string
+    title: string
+    description: string
+    content: string
+}
 
-const Courses: React.FC<CoursesPropsType> = ({}) => {
+type CoursesPropsType = {
+    courseIds: string[]
+}
 
-    const mappedCourses = courses.map(c => (
-        <div key={c._id}>
-            <NavLink to={PATH.COURSES + '/' + c._id}>
-                <button>{c.name}</button>
+const Courses: React.FC<CoursesPropsType> = ({courseIds}) => {
+    const [courses, setCourses] = useState<CourseType[]>([])
+    const [error, setError] = useState<string>('')
+
+    useEffect(() => {
+        axios.get<GetCoursesRequestType>('http://127.0.0.1:8000/courses/')
+            .then(res => {
+                console.log('users: ', res.data)
+                setCourses(res.data.results)
+            })
+            .catch(e => setError('error connection: ' + JSON.stringify({...e})))
+    }, [])
+
+    const userCourses = courses.filter(c => courseIds.find(i => i === c.id))
+
+    // const mappedCourses = coursesTest.map(c => (
+    //     <div key={c.id}>
+    //         <NavLink to={PATH.COURSES + '/' + c.id}>
+    //             <button>{c.title}</button>
+    //         </NavLink>
+    //     </div>
+    // ))
+    const mappedCourses = userCourses.map(c => (
+        <div key={c.id}>
+            <NavLink to={PATH.COURSES + '/' + c.id}>
+                <button>{c.title}</button>
             </NavLink>
         </div>
     ))
 
     return (
         <div>
+            {error}
             {mappedCourses}
-            // куда переход?
         </div>
     )
 }
