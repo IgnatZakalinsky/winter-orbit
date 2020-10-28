@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useState} from 'react'
 import s from './Login.module.css'
-import {StatusType} from './LoginPage'
+import {GetUsersRequestType, StatusType} from './LoginPage'
+import axios from 'axios'
 
 type LoginPropsType = {
     status: StatusType
@@ -54,6 +55,21 @@ const Login: React.FC<LoginPropsType> = ({status, setStatus, send}) => {
                     >
                         авторизация
                     </button>
+
+                    <button
+                        onClick={() => {
+                            axios.post<GetUsersRequestType>('http://127.0.0.1:8000//search_user/')
+                                .then(res => {
+                                    console.log('users: ', res.data)
+                                    // setUsers(res.data.results)
+                                })
+                                // .catch(e => setError('error connection: ' + JSON.stringify({...e})))
+                        }}
+                    >
+                        test request
+                    </button>
+
+
                 </div>
             </div>
         </div>

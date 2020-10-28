@@ -1,34 +1,48 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import {PATH} from '../../../i1-main/m1-ui/u2-main/Main'
 import s from './CoursesPage.module.css'
+import axios from 'axios'
+import {CourseType, GetCoursesRequestType} from '../../f2-account/a1-ui/courses/Courses'
 
-const courses = [
-    {_id: 1, name: 'PythonNEO', about: 'something about'},
-    {_id: 2, name: 'PythonNEO', about: 'something about'},
-    {_id: 3, name: 'PythonNEO', about: 'something about'},
-    {_id: 4, name: 'PythonNEO', about: 'something about'},
-    {_id: 5, name: 'PythonNEO', about: 'something about'},
-    {_id: 6, name: 'PythonNEO', about: 'something about'},
-]
+// const testCourses: CourseType[] = [
+//     {id: '1', title: 'PythonNEO', description: 'something about', content: ''},
+//     {id: '2', title: 'PythonNEO', description: 'something about', content: ''},
+//     {id: '3', title: 'PythonNEO', description: 'something about', content: ''},
+//     {id: '4', title: 'PythonNEO', description: 'something about', content: ''},
+//     {id: '5', title: 'PythonNEO', description: 'something about', content: ''},
+//     {id: '6', title: 'PythonNEO', description: 'something about', content: ''},
+// ]
 
 type CoursesPagePropsType = {}
 
 const CoursesPage: React.FC<CoursesPagePropsType> = ({}) => {
+    const [courses, setCourses] = useState<CourseType[]>([])
+    const [error, setError] = useState<string>('')
+
+    useEffect(() => {
+        axios.get<GetCoursesRequestType>('http://127.0.0.1:8000/courses/')
+            .then(res => {
+                console.log('users: ', res.data)
+                setCourses(res.data.results)
+            })
+            .catch(e => setError('error connection: ' + JSON.stringify({...e})))
+    }, [])
+
     const mappedCourses = courses.map(c => (
-        <div key={c._id} className={s.course}>
+        <div key={c.id} className={s.course}>
             <div className={s.img}>
                 img
             </div>
 
             <div className={s.name}>
-                {c.name}
+                {c.title}
             </div>
 
             <div className={s.aboutBlock}>
-                <div className={s.about}>{c.about}</div>
+                <div className={s.about}>{c.description}</div>
 
-                <NavLink to={PATH.COURSES + '/' + c._id}>
+                <NavLink to={PATH.COURSES + '/' + c.id}>
                     <button>перейти к курсу</button>
                 </NavLink>
             </div>
@@ -37,6 +51,7 @@ const CoursesPage: React.FC<CoursesPagePropsType> = ({}) => {
 
     return (
         <div className={s.page}>
+            {error}
             {mappedCourses}
         </div>
     )
