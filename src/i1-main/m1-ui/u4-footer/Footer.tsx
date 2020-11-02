@@ -1,28 +1,33 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
 import s from './Footer.module.css'
+import {PATH} from '../u2-main/Main'
+import logo from './logo-orbit.png'
 
 const Footer = () => {
     return (
         <div className={s.footer}>
             <div className={s.start}>
-                <div className={s.item}>
-                    <img src={''} alt={'logo'}/>
+                <div className={s.item1}>
+                    <img src={logo} alt={'logo'}/>
+                    <span>зимняя орбита</span>
                 </div>
 
 
                 <div className={s.item}>
-                    <div>
+                    <div className={s.head}>
                         Контакты
                     </div>
 
-                    <div>по учебной части</div>
-                    <div>сотрудничество</div>
+                    <NavLink to={PATH.MAIL} className={s.link}>по учебной части</NavLink>
+                    <NavLink to={PATH.MAIL} className={s.link}>сотрудничество</NavLink>
                 </div>
 
                 <div className={s.item}>
                     <div>
-                        Курсы
+                        <NavLink to={PATH.COURSES} activeClassName={s.active} className={s.link}>
+                            <div className={s.head}>Курсы</div>
+                        </NavLink>
                     </div>
 
                     <div>ПитонНео</div>

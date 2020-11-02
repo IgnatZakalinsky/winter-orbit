@@ -2,70 +2,50 @@ import React, {useEffect, useState} from 'react'
 import {Redirect} from 'react-router-dom'
 import {PATH} from '../../../i1-main/m1-ui/u2-main/Main'
 import Login from './Login'
-import axios from 'axios'
+import {useDispatch, useSelector} from 'react-redux'
+import {LoginActions, signIn} from '../l2-bll/loginReducer'
+import {AppStoreType} from '../../../i1-main/m2-bll/store'
 
-export type StatusType = 'default' | 'loading' | 'error login/pass' | 'ok'
-export type GetUsersRequestType = {
-    count: number
-    next: any // any
-    previous: any // any
-    results: UserType[]
-}
-export type UserType = {
-    email: string
-    id: number
-    is_superuser: boolean
-    password: string
-    username: string
-}
+export type StatusType = 'default' | 'loading' | 'error' | 'ok'
+// export type GetUsersRequestType = {
+//     count: number
+//     next: any // any
+//     previous: any // any
+//     results: UserType[]
+// }
 
-type LoginPagePropsType = {
-    setIsAuth: (isAuth: boolean) => void
-    setUser: (user: UserType | null) => void
-}
+type LoginPagePropsType = {}
 
-const LoginPage: React.FC<LoginPagePropsType> = ({setIsAuth, setUser}) => {
+const LoginPage: React.FC<LoginPagePropsType> = () => {
+    const {loading, success, error} = useSelector((state: AppStoreType) => state.login)
     const [status, setStatus] = useState<StatusType>('default')
     const [redirect, setRedirect] = useState<boolean>(false)
-    const [users, setUsers] = useState<UserType[]>([])
-    const [error, setError] = useState<string>('')
 
     useEffect(() => {
-        axios.get<GetUsersRequestType>('http://127.0.0.1:8000/users/')
-            .then(res => {
-                console.log('users: ', res.data)
-                setUsers(res.data.results)
-            })
-            .catch(e => setError('error connection: ' + JSON.stringify({...e})))
-    }, [])
 
+        if (loading && status !== 'loading') setStatus('loading')
+        if (error && status !== error) setStatus('error')
+        if (success && status !== 'ok') {
+            setStatus('ok')
+            setTimeout(() => {
+                setRedirect(true)
+            }, 500)
+        }
+    }, [loading, success, error, setStatus, status])
+
+    const dispatch = useDispatch()
     const send = (login: string, pass: string) => {
-        setStatus('loading')
-
-        const user = users.find(u => u.email === login && u.password === pass)
-
-        setTimeout(() => {
-            if (user) {
-                setStatus('ok')
-                setUser(user)
-                setIsAuth(true)
-
-                setTimeout(() => {
-                    setRedirect(true)
-                }, 500)
-            } else {
-                setStatus('error login/pass')
-            }
-        }, 1500)
+        dispatch(signIn(login, pass))
+    }
+    const setStatusCallback = (s: StatusType) => {
+        setStatus(s)
+        dispatch(LoginActions.setError(''))
     }
 
     if (redirect) return <Redirect to={PATH.ACCOUNT}/>
 
     return (
-        <>
-            {error}
-            <Login send={send} setStatus={setStatus} status={status}/>
-        </>
+        <Login send={send} setStatus={setStatusCallback} status={status} error={error}/>
     )
 }
 

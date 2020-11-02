@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 80vh;
+    height: 75vh;
 }
 
 .logo {
@@ -14,6 +14,11 @@
     border: #ffffff solid 30px;
     border-radius: 300px;
     background: #0093fe;
+}
+
+.logo .img {
+    margin-top: 50px;
+    margin-left: 75px;
 }
 
 .default {
@@ -34,8 +39,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    width: 900px;
-    height: 400px;
+    width: 789px;
+    height: 430px;
     z-index: 1;
 
     background: #0093fe;
@@ -43,4 +48,38 @@
 
 .form .item {
     margin: 20px;
+}
+
+.input {
+    width: 422px;
+    height: 40px;
+    padding-left: 20px;
+
+    border: none;
+    outline: none;
+}
+
+.button {
+    width: 288px;
+    height: 44px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+
+    box-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    color: #505050;
+    font-size: 24px;
+    font-weight: bold;
+    background: white;
+}
+
+.button:hover {
+    border: 2px solid white;
+    box-shadow: 0 5px 7px rgba(0,0,0,0.6);
+    background: #f3f3f3;
+}
+
+.button:active {
+    box-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    background: white;
 }

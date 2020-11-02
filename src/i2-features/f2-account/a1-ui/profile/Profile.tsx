@@ -1,14 +1,12 @@
 import React from 'react'
-import {ProfileType} from '../AccountPage'
-import {UserType} from '../../../f1-login/l1-ui/LoginPage'
+import {UserType} from '../Account'
 
 type ProfilePropsType = {
-    profile: ProfileType | undefined
-    user: UserType | null
+    profile: UserType | undefined
 }
 
-const Profile: React.FC<ProfilePropsType> = ({profile, user}) => {
-    const name = user ? user.username : 'noname'
+const Profile: React.FC<ProfilePropsType> = ({profile}) => {
+    const name = profile ? profile.username : 'noname'
     const avatar = profile ? profile.profile_image : ''
 
     return (

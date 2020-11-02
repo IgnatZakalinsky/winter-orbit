@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    min-height: 80vh;
+    min-height: 75vh;
 }
 
 .course {

@@ -2,28 +2,48 @@ import React from 'react'
 import {NavLink} from 'react-router-dom'
 import s from './Header.module.css'
 import {PATH} from '../u2-main/Main'
+import logo from './logo-ordit.png'
+import men from './men.png'
+import {useSelector} from "react-redux";
+import {AppStoreType} from "../../m2-bll/store";
 
 type HeaderPropsType = {
     isAuth: boolean
 }
 
 const Header: React.FC<HeaderPropsType> = ({isAuth}) => {
+    const {username} = useSelector((store: AppStoreType) => store.app.data) || {}
+
     return (
         <div className={s.header}>
             <div className={s.start}>
-                <div className={s.item}>
-                    <NavLink to={PATH.ACCOUNT} activeClassName={s.active} className={s.link}>кабинет</NavLink>
-                </div>
-
-                <div className={s.item}>
-                    <NavLink to={PATH.COURSES} activeClassName={s.active} className={s.link}>курсы</NavLink>
-                </div>
-
-                <div className={s.item}>почта</div>
+                <NavLink
+                    to={PATH.ACCOUNT}
+                    activeClassName={s.active + ' ' + s.item}
+                    className={s.link + ' ' + s.item}
+                >
+                    <span className={s.text}>кабинет</span>
+                </NavLink>
+                <NavLink
+                    to={PATH.COURSES}
+                    activeClassName={s.active + ' ' + s.item}
+                    className={s.link + ' ' + s.item}
+                >
+                    <span className={s.text}>курсы</span>
+                </NavLink>
+                <NavLink
+                    to={PATH.MAIL}
+                    activeClassName={s.active + ' ' + s.item}
+                    className={s.link + ' ' + s.item}
+                >
+                    <span className={s.text}>почта</span>
+                </NavLink>
             </div>
 
             <div className={s.center}>
-                зимняя орбита
+                <div className={s.text}>зимняя</div>
+                <img src={logo} alt={'logo'} width={'82px'}/>
+                <div className={s.text}>орбита</div>
             </div>
 
             <div className={s.end}>
@@ -34,16 +54,16 @@ const Header: React.FC<HeaderPropsType> = ({isAuth}) => {
                 {/*переделать*/}
                 <div className={s.person}>
                     {!isAuth
-                        ? <div>вход в орбиту</div>
+                        ? <div className={s.text}>вход в орбиту</div>
                         : (
-                            <div>
+                            <div className={s.text}>
                                 <div>добро пожаловать</div>
-                                <span>ТЕСТ</span>
+                                <span>{username}</span>
                             </div>
                         )
                     }
 
-                    <img src={''} alt={'person'}/>
+                    <img src={men} alt={'person'}/>
                 </div>
             </div>
         </div>

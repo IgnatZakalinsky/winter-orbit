@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import Account from './Account'
-import axios from 'axios'
-import {UserType} from '../../f1-login/l1-ui/LoginPage'
+import {useSelector} from 'react-redux'
+import {AppStoreType} from '../../../i1-main/m2-bll/store'
 
 export type GetProfilesRequestType = {
     count: number
@@ -22,28 +22,26 @@ export type ProfileType = {
 }
 
 type AccountPagePropsType = {
-    user: UserType | null
+
 }
 
-const AccountPage: React.FC<AccountPagePropsType> = ({user}) => {
-    const [profiles, setProfiles] = useState<ProfileType[]>([])
+const AccountPage: React.FC<AccountPagePropsType> = () => {
+    const {data} = useSelector((store: AppStoreType) => store.app)
     const [error, setError] = useState<string>('')
 
     useEffect(() => {
-        axios.get<GetProfilesRequestType>('http://127.0.0.1:8000/users_profiles/')
-            .then(res => {
-                console.log('profiles: ', res.data)
-                setProfiles(res.data.results)
-            })
-            .catch(e => setError('error connection: ' + JSON.stringify({...e})))
+        // axios.get<GetProfilesRequestType>('http://127.0.0.1:8000/users_profiles/')
+        //     .then(res => {
+        //         console.log('profiles: ', res.data)
+        //         setProfiles(res.data.results)
+        //     })
+        //     .catch(e => setError('error connection: ' + JSON.stringify({...e})))
     }, [])
-
-    const profile = profiles.find(p => user && p.user === user.id)
 
     return (
         <>
             {error}
-            <Account profile={profile} user={user}/>
+            <Account profile={data}/>
         </>
     )
 }
