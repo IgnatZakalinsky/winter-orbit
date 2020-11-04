@@ -4,6 +4,7 @@ import s from './Header.module.css'
 import {PATH} from '../u2-main/Main'
 import logo from './logo-ordit.png'
 import men from './men.png'
+import trueMen from './true-men.png'
 import {useSelector} from "react-redux";
 import {AppStoreType} from "../../m2-bll/store";
 
@@ -54,16 +55,21 @@ const Header: React.FC<HeaderPropsType> = ({isAuth}) => {
                 {/*переделать*/}
                 <div className={s.person}>
                     {!isAuth
-                        ? <div className={s.text}>вход в орбиту</div>
+                        ? <>
+                            <div className={s.text}>вход в орбиту</div>
+                            <img src={men} alt={'person'}/>
+                        </>
                         : (
-                            <div className={s.text}>
-                                <div>добро пожаловать</div>
-                                <span>{username}</span>
-                            </div>
+                            <>
+                                <div className={s.text}>
+                                    <div>добро пожаловать</div>
+                                    <span>{username}</span>
+                                </div>
+
+                                <img src={trueMen} alt={'trueMen'}/>
+                            </>
                         )
                     }
-
-                    <img src={men} alt={'person'}/>
                 </div>
             </div>
         </div>

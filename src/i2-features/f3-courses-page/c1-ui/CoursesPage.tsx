@@ -31,9 +31,7 @@ const CoursesPage: React.FC<CoursesPagePropsType> = ({}) => {
 
     const mappedCourses = courses.map(c => (
         <div key={c.id} className={s.course}>
-            <div className={s.img}>
-                img
-            </div>
+            <div className={s.img}/>
 
             <div className={s.name}>
                 {c.title}
@@ -43,7 +41,7 @@ const CoursesPage: React.FC<CoursesPagePropsType> = ({}) => {
                 <div className={s.about}>{c.description}</div>
 
                 <NavLink to={PATH.COURSES + '/' + c.id}>
-                    <button>перейти к курсу</button>
+                    <button className={s.button}>перейти к курсу</button>
                 </NavLink>
             </div>
         </div>

@@ -112,8 +112,13 @@ const Course: React.FC<CoursePropsType> = ({}) => {
                 </div>
 
                 <div className={s.buttons}>
-                    <button onClick={setLessonMinus}>К прошлому уроку</button>
-                    <button onClick={setLessonPlus}>следующее занятие</button>
+                    <div className={s.leftButton}>
+                        <button className={s.left} onClick={setLessonMinus}>К прошлому уроку</button>
+                    </div>
+
+                    <div className={s.rightButton}>
+                        <button className={s.right} onClick={setLessonPlus}>следующее занятие</button>
+                    </div>
                 </div>
             </div>
 

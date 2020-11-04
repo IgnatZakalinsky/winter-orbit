@@ -1,5 +1,6 @@
 import React from 'react'
 import {UserType} from '../Account'
+import s from './Profile.module.css'
 
 type ProfilePropsType = {
     profile: UserType | undefined
@@ -10,12 +11,12 @@ const Profile: React.FC<ProfilePropsType> = ({profile}) => {
     const avatar = profile ? profile.profile_image : ''
 
     return (
-        <div>
-            <img src={avatar} alt={'avatar'}/>
+        <div className={s.profile}>
+            {/*<img src={avatar} alt={'avatar'}/>*/}
 
-            <div>{name}</div>
+            <div className={s.item}>{name}</div>
 
-            <div>сменить пароль</div>
+            <div className={s.item}>сменить пароль</div>
         </div>
     )
 }

@@ -17,6 +17,7 @@
     background: #f3f2f2;
     border-right: #0093fe solid 2px;
 }
+
 .lesson {
     width: 60vw;
 }
@@ -26,6 +27,48 @@
     align-items: center;
     justify-content: space-around;
     width: 60vw;
+}
+
+.leftButton {
+    width: 256px;
+    height: 46px;
+    margin-bottom: 10px;
+    clip-path: polygon(100% 0%, 10% 0%, 0% 50%, 10% 100%, 100% 100%);
+
+    background: #0094ff;
+}
+
+.left {
+    width: 255px;
+    height: 45px;
+
+    border: 1px solid #0094ff;
+    outline: none;
+    clip-path: polygon(100% 0%, 10% 0%, 0% 50%, 10% 100%, 100% 100%);
+
+    background: #f3f2f2;
+    color: black;
+}
+
+.rightButton {
+    width: 256px;
+    height: 46px;
+    margin-bottom: 10px;
+    clip-path: polygon(90% 0%, 0% 0%, 0% 100%, 90% 100%, 100% 50%);
+
+    background: #0094ff;
+}
+
+.right {
+    width: 255px;
+    height: 45px;
+
+    border: 1px solid #0094ff;
+    outline: none;
+    clip-path: polygon(90% 0%, 0% 0%, 0% 100%, 90% 100%, 100% 50%);
+
+    background: #f3f2f2;
+    color: black;
 }
 
 .leftBlock {

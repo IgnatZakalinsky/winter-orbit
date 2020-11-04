@@ -25,10 +25,16 @@ const Account: React.FC<AccountPropsType> = ({profile}) => {
     return (
         <div className={s.account}>
             <div className={s.menu}>
-                <div onClick={() => setItem('profile')} className={item === 'profile' ? s.checked : ''}>
+                <div
+                    onClick={() => setItem('profile')}
+                    className={s.item + ' ' + (item === 'profile' ? s.checked : '')}
+                >
                     Личные данные
                 </div>
-                <div onClick={() => setItem('courses')} className={item === 'courses' ? s.checked : ''}>
+                <div
+                    onClick={() => setItem('courses')}
+                    className={s.item + ' ' + (item === 'courses' ? s.checked : '')}
+                >
                     Ваши курсы
                 </div>
 

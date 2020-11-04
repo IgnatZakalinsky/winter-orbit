@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {NavLink} from 'react-router-dom'
 import {PATH} from '../../../../i1-main/m1-ui/u2-main/Main'
 import axios from 'axios'
+import s from './Courses.module.css'
 
 // const coursesTest = [
 //     {id: 1, title: 'Python junior'},
@@ -51,13 +52,13 @@ const Courses: React.FC<CoursesPropsType> = ({courseIds}) => {
     const mappedCourses = userCourses.map(c => (
         <div key={c.id}>
             <NavLink to={PATH.COURSES + '/' + c.id}>
-                <button>{c.title}</button>
+                <button className={s.item}>{c.title}</button>
             </NavLink>
         </div>
     ))
 
     return (
-        <div>
+        <div className={s.courses}>
             {error}
             {mappedCourses}
         </div>
