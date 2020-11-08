@@ -8,7 +8,7 @@ type ProfilePropsType = {
 
 const Profile: React.FC<ProfilePropsType> = ({profile}) => {
     const name = profile ? profile.username : 'noname'
-    const avatar = profile ? profile.profile_image : ''
+    // const avatar = profile ? profile.profile_image : ''
 
     return (
         <div className={s.profile}>
@@ -16,7 +16,7 @@ const Profile: React.FC<ProfilePropsType> = ({profile}) => {
 
             <div className={s.item}>{name}</div>
 
-            <div className={s.item}>сменить пароль</div>
+            {/*<div className={s.item}>сменить пароль</div>*/}
         </div>
     )
 }

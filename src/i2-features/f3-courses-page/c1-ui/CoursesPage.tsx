@@ -3,7 +3,8 @@ import {NavLink} from 'react-router-dom'
 import {PATH} from '../../../i1-main/m1-ui/u2-main/Main'
 import s from './CoursesPage.module.css'
 import axios from 'axios'
-import {CourseType, GetCoursesRequestType} from '../../f2-account/a1-ui/courses/Courses'
+import {CourseType} from "../../f2-account/a2-bll/coursesReducer";
+import { GetCoursesRequestType } from '../../f2-account/a3-dal/CoursesAPI'
 
 // const testCourses: CourseType[] = [
 //     {id: '1', title: 'PythonNEO', description: 'something about', content: ''},

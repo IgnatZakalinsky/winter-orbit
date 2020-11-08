@@ -7,7 +7,6 @@ export type UserType = {
     email: string
     id: number
     is_superuser: boolean
-    // password: string
     username: string
     profile_image: undefined
     user_courses: string[]

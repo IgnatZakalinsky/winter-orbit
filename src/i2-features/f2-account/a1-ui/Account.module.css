@@ -25,7 +25,8 @@
 
     font-size: 18px;
     background: #1b1b21;
-    color: #f3f3f3;
+    /*color: #f3f3f3;*/
+    color: #5a7d26;
 }
 
 .menu .item {
@@ -34,7 +35,8 @@
 }
 
 .checked {
-    color: #5a7d26;
+    /*color: #5a7d26;*/
+    color: #f3f3f3;
 }
 
 .checkedBlock {

@@ -2,7 +2,7 @@ import {AppStoreType} from '../../../i1-main/m2-bll/store'
 import {ThunkAction} from 'redux-thunk'
 import {LoginAPI} from '../l3-dal/LoginAPI'
 import {AppActions, AppActionsType} from '../../../i1-main/m2-bll/appReducer'
-import {InferActionsType, ReturnVoid, ExtraArgumentNya, tryCatch} from '../../../i1-main/m2-bll/help'
+import {InferActionsType, ReturnVoid, ExtraArg, tryCatch} from '../../../i1-main/m2-bll/help'
 
 const initialState = {
     error: '',
@@ -66,7 +66,7 @@ export const LoginActions = {
 
 export const signIn = (
     email: string, password: string
-): ThunkAction<ReturnVoid, AppStoreType, ExtraArgumentNya, LoginActionsType | AppActionsType> => async (
+): ThunkAction<ReturnVoid, AppStoreType, ExtraArg, LoginActionsType | AppActionsType> => async (
     dispatch,
     // getStore: GetAppStoreType
 ) => {
