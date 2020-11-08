@@ -7,24 +7,16 @@ import {LoginActions, signIn} from '../l2-bll/loginReducer'
 import {AppStoreType} from '../../../i1-main/m2-bll/store'
 
 export type StatusType = 'default' | 'loading' | 'error' | 'ok'
-// export type GetUsersRequestType = {
-//     count: number
-//     next: any // any
-//     previous: any // any
-//     results: UserType[]
-// }
 
-type LoginPagePropsType = {}
-
-const LoginPage: React.FC<LoginPagePropsType> = () => {
+const LoginPage = () => {
     const {loading, success, error} = useSelector((state: AppStoreType) => state.login)
     const [status, setStatus] = useState<StatusType>('default')
     const [redirect, setRedirect] = useState<boolean>(false)
 
     useEffect(() => {
-
         if (loading && status !== 'loading') setStatus('loading')
         if (error && status !== error) setStatus('error')
+
         if (success && status !== 'ok') {
             setStatus('ok')
             setTimeout(() => {

@@ -1,8 +1,11 @@
 import React, {ChangeEvent, useState} from 'react'
 import s from './Login.module.css'
 import {StatusType} from './LoginPage'
-import axios from 'axios'
 import logoDef from './login-def.png'
+import eye from './eye.png'
+import union from './Union.png'
+import errorImg from './error.png'
+import ok from './ok.png'
 
 type LoginPropsType = {
     status: StatusType
@@ -14,6 +17,7 @@ type LoginPropsType = {
 const Login: React.FC<LoginPropsType> = ({status, error, setStatus, send}) => {
     const [login, setLogin] = useState<string>('me@gmail.com')
     const [pass, setPass] = useState<string>('y3jPqdFvNtB6Q96')
+    const [show, setShow] = useState<boolean>(false)
 
     const onChangeLogin = (e: ChangeEvent<HTMLInputElement>) => {
         setLogin(e.currentTarget.value)
@@ -28,17 +32,37 @@ const Login: React.FC<LoginPropsType> = ({status, error, setStatus, send}) => {
 
     return (
         <div className={s.login}>
-            <div className={s.logo + ' ' + s[status]}>
-                <img src={logoDef} alt={'logo'} className={s.img}/>
+            <div className={s.logo + ' ' + s.default}>
+                {status === 'default'
+                    ? <img src={logoDef} alt={'logo'} className={s.img}/>
+                    : (
+                        <div className={s.loading}>
+                            <img
+                                src={status === 'error'
+                                    ? errorImg
+                                    : status === 'ok'
+                                        ? ok : ''
+                                }
+                                alt={status === 'error'
+                                    ? 'error'
+                                    : status === 'ok'
+                                        ? 'ok' : ''
+                                }
+                                className={s.status}
+                            />
+                        </div>
+                    )
+                }
             </div>
 
             <div className={s.form}>
                 <div className={s.item}>
-                    {error ? error : <br/>}
+                    {error ? 'неверный ввод данных' : <br/>}
                 </div>
 
                 <div className={s.item}>
                     <input
+                        placeholder={'введите ваш логин'}
                         className={s.input}
                         value={login}
                         onChange={onChangeLogin}
@@ -46,42 +70,28 @@ const Login: React.FC<LoginPropsType> = ({status, error, setStatus, send}) => {
                 </div>
                 <div className={s.item}>
                     <input
+                        placeholder={'введите ваш пароль'}
                         className={s.input}
-                        type='password'
+                        type={show ? 'text' : 'password'}
                         value={pass}
                         onChange={onChangePass}
+                    />
+                    <img
+                        className={show ? s.eye : s.union}
+                        src={show ? eye : union}
+                        alt={'eye'}
+                        onClick={() => setShow(!show)}
                     />
                 </div>
 
                 <div className={s.item}>
                     <button
+                        disabled={!login || !pass}
                         className={s.button}
                         onClick={sendCallback}
                     >
                         авторизация
                     </button>
-
-                    {/*<button*/}
-                    {/*    onClick={() => {*/}
-                    {/*        axios.post(*/}
-                    {/*            'http://127.0.0.1:8000/search_userprofile',*/}
-                    {/*            {*/}
-                    {/*                // email: 'me@gmail.com',*/}
-                    {/*                // password: 'y3jPqdFvNtB6Q96',*/}
-                    {/*                // username: 'Me',*/}
-                    {/*                username: 'me@gmail.com',*/}
-                    {/*            }*/}
-                    {/*            )*/}
-                    {/*            .then(res => {*/}
-                    {/*                console.log('users: ', res.data)*/}
-                    {/*                // setUsers(res.data.results)*/}
-                    {/*            })*/}
-                    {/*            // .catch(e => setError('error connection: ' + JSON.stringify({...e})))*/}
-                    {/*    }}*/}
-                    {/*>*/}
-                    {/*    test request*/}
-                    {/*</button>*/}
-
                 </div>
             </div>
         </div>

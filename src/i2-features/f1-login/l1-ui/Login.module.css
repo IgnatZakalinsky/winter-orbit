@@ -24,14 +24,22 @@
 .default {
     background: #0093fe;
 }
+
 .loading {
-    background: #fedc00;
+    /*background: #fedc00;*/
+    height: 240px;
+    width: 240px;
+    margin-left: 10px;
+    margin-top: 10px;
+    z-index: 3;
+
+    border-radius: 300px;
+    background: white;
 }
-.error {
-    background: #fe001e;
-}
-.ok {
-    background: #00fe04;
+
+.status {
+    margin-top: 60px;
+    margin-left: 40px;
 }
 
 .form {
@@ -48,6 +56,23 @@
 
 .form .item {
     margin: 20px;
+    color: #f3f3f3;
+    font-size: 24px;
+    width: 442px;
+}
+
+.eye {
+    position: absolute;
+    margin-top: -29px;
+    margin-left: 411px;
+    z-index: 10;
+}
+
+.union {
+    position: absolute;
+    margin-top: -34px;
+    margin-left: 410px;
+    z-index: 10;
 }
 
 .input {
@@ -65,8 +90,9 @@
     border-radius: 5px;
     border: none;
     outline: none;
+    margin-left: 77px;
 
-    box-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
     color: #505050;
     font-size: 24px;
     font-weight: bold;
@@ -75,11 +101,11 @@
 
 .button:hover {
     border: 2px solid white;
-    box-shadow: 0 5px 7px rgba(0,0,0,0.6);
+    box-shadow: 0 5px 7px rgba(0, 0, 0, 0.6);
     background: #f3f3f3;
 }
 
 .button:active {
-    box-shadow: 0 1px 4px rgba(0,0,0,0.6);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
     background: white;
 }
