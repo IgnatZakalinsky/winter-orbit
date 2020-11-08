@@ -5,8 +5,9 @@ import {PATH} from '../u2-main/Main'
 import logo from './logo-ordit.png'
 import men from './men.png'
 import trueMen from './true-men.png'
-import {useSelector} from "react-redux";
-import {AppStoreType} from "../../m2-bll/store";
+import {useSelector} from 'react-redux'
+import {AppStoreType} from '../../m2-bll/store'
+import Contacts from '../u6-contacts/Contacts'
 
 type HeaderPropsType = {
     isAuth: boolean
@@ -49,17 +50,17 @@ const Header: React.FC<HeaderPropsType> = ({isAuth}) => {
 
             <div className={s.end}>
                 <div>
-                    contacts
+                    <Contacts/>
                 </div>
 
-                {/*переделать*/}
                 <div className={s.person}>
                     {!isAuth
-                        ? <>
-                            <div className={s.text}>вход в орбиту</div>
-                            <img src={men} alt={'person'}/>
-                        </>
-                        : (
+                        ? (
+                            <>
+                                <div className={s.text}>вход в орбиту</div>
+                                <img src={men} alt={'person'}/>
+                            </>
+                        ) : (
                             <>
                                 <div className={s.text}>
                                     <div>добро пожаловать</div>

@@ -3,6 +3,7 @@ import {NavLink} from 'react-router-dom'
 import s from './Footer.module.css'
 import {PATH} from '../u2-main/Main'
 import logo from './logo-orbit.png'
+import Contacts from '../u6-contacts/Contacts'
 
 const Footer = () => {
     return (
@@ -23,19 +24,19 @@ const Footer = () => {
                     <NavLink to={PATH.MAIL} className={s.link}>сотрудничество</NavLink>
                 </div>
 
-                <div className={s.item}>
-                    <div>
-                        <NavLink to={PATH.COURSES} activeClassName={s.active} className={s.link}>
-                            <div className={s.head}>Курсы</div>
-                        </NavLink>
-                    </div>
+                {/*<div className={s.item}>*/}
+                {/*    <div>*/}
+                {/*        <NavLink to={PATH.COURSES} activeClassName={s.active} className={s.link}>*/}
+                {/*            <div className={s.head}>Курсы</div>*/}
+                {/*        </NavLink>*/}
+                {/*    </div>*/}
 
-                    <div>ПитонНео</div>
-                </div>
+                {/*    <div>ПитонНео</div>*/}
+                {/*</div>*/}
             </div>
 
             <div className={s.end}>
-                <div>contacts</div>
+                <div><Contacts/></div>
             </div>
         </div>
     )

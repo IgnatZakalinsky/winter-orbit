@@ -1,5 +1,5 @@
 import { InferActionsType } from './help'
-import {UserType} from "../../i2-features/f2-account/a1-ui/Account";
+import {UserType} from '../../i2-features/f2-account/a1-ui/Account'
 
 const initialState = {
     isAuth: false,
@@ -35,30 +35,3 @@ export const AppActions = {
     } as const),
 
 }
-
-// export const signIn = (
-//     email: string, password: string
-// ): ThunkAction<ReturnVoid, AppStoreType, ExtraArgumentNya, LoginActionsType> => async (
-//     dispatch,
-//     // getStore: GetAppStoreType
-// ) => {
-//     dispatch(LoginActions.setLoading(true))
-//
-//     await tryCatch(
-//         async () => {
-//             dispatch(LoginActions.setLoading(true))
-//             const data = await LoginAPI.signIn(email, password)
-//
-//             dispatch(LoginActions.setSuccess(true))
-//             // dispatch(ProfileActions.setUser(data))
-//
-//             setTimeout(() => {
-//                 dispatch(LoginActions.setSuccess(false))
-//             }, 500)
-//
-//             console.log('winter-orbit, Login Success!', data)
-//         },
-//         (e) => dispatch(LoginActions.setError(e)),
-//         'Login',
-//     )
-// }
