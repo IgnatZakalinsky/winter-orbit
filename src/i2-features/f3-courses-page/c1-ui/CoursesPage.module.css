@@ -22,9 +22,19 @@
 
 .name {
     margin-top: -46px;
-    padding-left: 12px;
     padding-top: 16px;
     width: 180px;
+    height: 30px;
+    clip-path: polygon(70% 0%, 30% 0%, 0% 50%, 0% 100%, 100% 100%, 100% 50%);
+
+    background: white;
+}
+
+.nameIn {
+    margin-top: -15px;
+    margin-left: 1px;
+    padding-top: 16px;
+    width: 178px;
     height: 30px;
     clip-path: polygon(70% 0%, 30% 0%, 0% 50%, 0% 100%, 100% 100%, 100% 50%);
 

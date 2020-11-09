@@ -1,41 +1,29 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import {NavLink} from 'react-router-dom'
 import {PATH} from '../../../i1-main/m1-ui/u2-main/Main'
 import s from './CoursesPage.module.css'
-import axios from 'axios'
-import {CourseType} from "../../f2-account/a2-bll/coursesReducer";
-import { GetCoursesRequestType } from '../../f2-account/a3-dal/CoursesAPI'
+import {useDispatch, useSelector} from 'react-redux'
+import {AppStoreType} from '../../../i1-main/m2-bll/store'
+import {getCourses} from '../../f2-account/a2-bll/coursesReducer'
 
-// const testCourses: CourseType[] = [
-//     {id: '1', title: 'PythonNEO', description: 'something about', content: ''},
-//     {id: '2', title: 'PythonNEO', description: 'something about', content: ''},
-//     {id: '3', title: 'PythonNEO', description: 'something about', content: ''},
-//     {id: '4', title: 'PythonNEO', description: 'something about', content: ''},
-//     {id: '5', title: 'PythonNEO', description: 'something about', content: ''},
-//     {id: '6', title: 'PythonNEO', description: 'something about', content: ''},
-// ]
-
-type CoursesPagePropsType = {}
-
-const CoursesPage: React.FC<CoursesPagePropsType> = ({}) => {
-    const [courses, setCourses] = useState<CourseType[]>([])
-    const [error, setError] = useState<string>('')
+const CoursesPage = () => {
+    const {courses} = useSelector((store: AppStoreType) => store.courses)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        axios.get<GetCoursesRequestType>('http://127.0.0.1:8000/courses/')
-            .then(res => {
-                console.log('users: ', res.data)
-                setCourses(res.data.results)
-            })
-            .catch(e => setError('error connection: ' + JSON.stringify({...e})))
-    }, [])
+        dispatch(getCourses())
+    }, [dispatch])
 
     const mappedCourses = courses.map(c => (
         <div key={c.id} className={s.course}>
             <div className={s.img}/>
 
             <div className={s.name}>
-                {c.title}
+                <div className={s.nameIn}>
+                    {c.title}
+                    {/*12345678901234567890*/}
+                    {/*123456789012345*/}
+                </div>
             </div>
 
             <div className={s.aboutBlock}>
@@ -50,7 +38,6 @@ const CoursesPage: React.FC<CoursesPagePropsType> = ({}) => {
 
     return (
         <div className={s.page}>
-            {error}
             {mappedCourses}
         </div>
     )
