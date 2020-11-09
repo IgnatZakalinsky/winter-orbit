@@ -25,6 +25,7 @@ const Mail: React.FC<LoginPropsType> = () => {
 
                 <div className={s.item}>
                     <input
+                        placeholder={'ваш email'}
                         className={s.input}
                     />
                 </div>

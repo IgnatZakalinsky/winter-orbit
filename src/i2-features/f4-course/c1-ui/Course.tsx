@@ -1,44 +1,24 @@
 import React, {ReactNode, useEffect, useState} from 'react'
 import s from './Course.module.css'
 import {useParams} from 'react-router-dom'
-// import {getCourse} from '../c2-bll/courses'
-import axios from 'axios'
+import {useDispatch, useSelector} from 'react-redux'
+import {AppStoreType} from '../../../i1-main/m2-bll/store'
+import {getLessonsForCourse} from '../c2-bll/lessonsReducer'
 
-export type LessonType = {
-    id: string
-    title: string
-    description: string
-    content: string
-    cours: string
-}
-export type GetLessonsRequestType = {
-    count: number
-    next: any // any
-    previous: any // any
-    results: LessonType[]
-}
-
-type CoursePropsType = {}
-
-const Course: React.FC<CoursePropsType> = ({}) => {
+const Course = () => {
     const {id: course_id} = useParams()
     const [lesson, setLesson] = useState<number>(0)
     // const [selectedTerm, selectTerm] = useState<string>('')
 
-    const [lessons, setLessons] = useState<LessonType[]>([])
-    const [error, setError] = useState<string>('')
+    const {lessons} = useSelector((store: AppStoreType) => store.lessons)
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        axios.get<GetLessonsRequestType>('http://127.0.0.1:8000/lessons/')
-            .then(res => {
-                console.log('users: ', res.data)
-                setLessons(res.data.results)
-            })
-            .catch(e => setError('error connection: ' + JSON.stringify({...e})))
-    }, [])
+        dispatch(getLessonsForCourse(course_id))
+    }, [dispatch, course_id])
 
-    const course = lessons.filter(l => l.cours === course_id)
-    const mappedLesson = course[lesson] ? course[lesson].content : 'error'
+    // const course = lessons.filter(l => l.cours === course_id)
+    const mappedLesson = lessons[lesson] ? lessons[lesson].content : 'error'
 
     // const course = getCourse(lesson_id)
     // let mappedLesson: ReactNode = 'error'
@@ -99,13 +79,12 @@ const Course: React.FC<CoursePropsType> = ({}) => {
         if (lesson > 0) setLesson(lesson - 1)
     }
     const setLessonPlus = () => {
-        if (course.length > lesson + 1)
-        setLesson(lesson + 1)
+        if (lessons.length > lesson + 1)
+            setLesson(lesson + 1)
     }
 
     return (
         <div className={s.page}>
-            {error}
             <div className={s.lessonBlock}>
                 <div className={s.lesson}>
                     {mappedLesson}

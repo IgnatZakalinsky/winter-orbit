@@ -20,6 +20,8 @@
 
 .lesson {
     width: 60vw;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .buttons {
@@ -81,11 +83,15 @@
 .dictionary {
     height: 35vh;
     width: 30vw;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .hints {
     height: 35vh;
     width: 30vw;
+    padding: 10px;
+    box-sizing: border-box;
 
     border-top: #0093fe solid 2px;
 }
