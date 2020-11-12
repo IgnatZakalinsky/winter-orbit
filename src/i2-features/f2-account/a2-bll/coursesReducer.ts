@@ -90,7 +90,7 @@ export const getCourses = (): ThunkAction<ReturnVoid, AppStoreType, ExtraArg, Co
             const data = await CoursesAPI.getCourses()
 
             dispatch(CoursesActions.setSuccess(true))
-            dispatch(CoursesActions.setCourses(data))
+            dispatch(CoursesActions.setCourses(data.results))
 
             setTimeout(() => {
                 dispatch(CoursesActions.setSuccess(false))
