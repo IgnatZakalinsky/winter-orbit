@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c8928f7783f6f0f96e26892dd2ce5672",
+    "revision": "bd42be70f73282dc14c3a7b62364a4dd",
     "url": "/winter-orbit/index.html"
   },
   {
-    "revision": "03edc36b33af57be2cdb",
+    "revision": "351eb5b8ecd0c02c0627",
     "url": "/winter-orbit/static/css/main.26f03ad7.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/winter-orbit/static/js/2.61b2eed8.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "03edc36b33af57be2cdb",
-    "url": "/winter-orbit/static/js/main.65222c91.chunk.js"
+    "revision": "351eb5b8ecd0c02c0627",
+    "url": "/winter-orbit/static/js/main.cd66f6b2.chunk.js"
   },
   {
     "revision": "768e1010c4357b098ce1",
