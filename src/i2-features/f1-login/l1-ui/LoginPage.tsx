@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react'
 import {Redirect} from 'react-router-dom'
-import {PATH} from '../../../i1-main/m1-ui/u2-main/Main'
-import Login from './Login'
 import {useDispatch, useSelector} from 'react-redux'
-import {LoginActions, signIn} from '../l2-bll/loginReducer'
 import {AppStoreType} from '../../../i1-main/m2-bll/store'
-
-export type StatusType = 'default' | 'loading' | 'error' | 'ok'
+import {PATH} from '../../../i1-main/m1-ui/u2-main/Main'
+import {LoginActions, signIn} from '../l2-bll/loginReducer'
+import Login from './Login'
+import {StatusType} from '../../../i0-common/c1-orbitForm/OrbitForm'
 
 const LoginPage = () => {
     const {loading, success, error} = useSelector((state: AppStoreType) => state.login)

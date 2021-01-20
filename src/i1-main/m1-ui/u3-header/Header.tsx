@@ -1,13 +1,13 @@
 import React from 'react'
 import {NavLink} from 'react-router-dom'
-import s from './Header.module.css'
-import {PATH} from '../u2-main/Main'
-import logo from './logo-ordit.png'
-import men from './men.png'
-import trueMen from './true-men.png'
 import {useSelector} from 'react-redux'
+import s from './Header.module.css'
 import {AppStoreType} from '../../m2-bll/store'
+import {PATH} from '../u2-main/Main'
 import Contacts from '../u6-contacts/Contacts'
+import logo from './../../../assets/logo-ordit.png'
+import men from './../../../assets/men.png'
+import trueMen from './../../../assets/true-men.png'
 
 type HeaderPropsType = {
     isAuth: boolean

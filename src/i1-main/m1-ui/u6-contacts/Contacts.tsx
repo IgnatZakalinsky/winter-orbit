@@ -1,12 +1,11 @@
 import React from 'react'
-import vk from './vk.png'
-import facebook from './facebook.png'
-import instagram from './instagram.png'
-import youtube from './youtube.png'
 import s from './Contacts.module.css'
+import vk from '../../../assets/vk.png'
+import facebook from '../../../assets/facebook.png'
+import instagram from '../../../assets/instagram.png'
+import youtube from '../../../assets/youtube.png'
 
 const Contacts = () => {
-
     return (
         <div className={s.contacts}>
             <img src={vk} alt={'vk'}/>

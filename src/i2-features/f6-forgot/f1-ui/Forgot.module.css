@@ -17,18 +17,18 @@
     width: 442px;
 }
 
-.forgot {
-    text-align: center;
-    font-size: 16px;
-    text-decoration: underline;
-
-    cursor: pointer;
+.statusText {
+    width: 442px;
+    text-align: left;
+    color: white;
 }
 
-.forgotLink {
+.ok {
+    margin-bottom: 100px;
+    font-size: 36px;
     color: white;
 }
 
 .button {
-    padding-left: 150px;
+    padding-left: 77px;
 }
